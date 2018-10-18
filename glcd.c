@@ -740,7 +740,7 @@ void glcd_WriteString(unsigned char str[],unsigned char font,unsigned char color
   
 }
 
-void glcd_PlotImg(char image[8][64], unsigned char xpos, unsigned char ypos, unsigned char color){
+void glcd_PlotImg(unsigned char image[8][64], unsigned char xpos, unsigned char ypos, unsigned char color){
   
 	int ptr=0;	// pointeur display    
 
@@ -756,7 +756,7 @@ void glcd_PlotImg(char image[8][64], unsigned char xpos, unsigned char ypos, uns
 			for(j = 0; j < 64; ++j)
 			{
                 if (image[i][j]==0xFF){
-                  glcd_PlotPixel(xpos, ypos, unsigned char color) ; 
+                  glcd_PlotPixel(xpos, ypos,color); 
                 }
               
 			}
