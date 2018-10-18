@@ -19,12 +19,15 @@ void main (void)
 {
     // call the function that will init the PIC
     initMyPIC18F();
-    //glcd_Init(GLCD_ON);
-    glcd_Image();
-    glcd_PlotPixel( 2, 2, 0xFF);
+    glcd_Init(GLCD_ON);
+    unsigned char Victoire[9] = { 'S', 'P', 'A', 'C', 'E','', 'I', 'N', '\0' };
+    ///glcd_Image();
+    //glcd_PlotPixel( 2, 2, 0xFF);
+    //glcd_WriteChar8X8('c','c');
+    //glcd_WriteChar3x6('a','c');
     while(1)
     {
-        ;
+       void glcd_WriteString(Victoire);
     }
 
 }// end of the main function

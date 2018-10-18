@@ -725,14 +725,14 @@ void glcd_WriteChar3x6(unsigned char ch, unsigned char color)
 //************************************************************************
 // void glcd_WriteString(unsigned char str[])
 //************************************************************************
-void glcd_WriteString(unsigned char str[],unsigned char font,unsigned char color)
+void glcd_WriteString(unsigned char str[])
 {	
+    
 	while(*str)
 	{
-		if(font)
+		
 			glcd_WriteChar8X8(*str, color);
-		else 
-			glcd_WriteChar3x6(*str, color);
+		
 		str++;
 	}
 }
