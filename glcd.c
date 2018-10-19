@@ -740,44 +740,17 @@ void glcd_WriteString(unsigned char str[],unsigned char font,unsigned char color
   
 }
 
-<<<<<<< HEAD
-void glcd_PlotImg(unsigned char** image, int xpos,  int ypos){
-=======
-void glcd_PlotImg(unsigned char image[8][64], unsigned char xpos, unsigned char ypos, unsigned char color){
->>>>>>> 4f5eca8b77da9f4a30fc9d0258b1cda891928482
-  
-	int ptr=0;	// pointeur display 
-        //sizeof(image);
-    int raw = sizeof(image[0]); // = ligne ?
-    int cols = sizeof(image[0][0]);//  = colonnes ?  
-	unsigned char i, j;
+/*
+void glcd_PlotImg(){
+  for(i = 0; i < 1024; i ++)		{
+        
+      glcd_PlotPixel( i, j, 0xFF);
 
-  	// Boucle sur les pages verticales (décalage de 2*8=16 pixel en haut)
-<<<<<<< HEAD
-        for( i = 0; i < 8; ++i)
-        {	for(j = 0; j < 64; ++j)
-                {
-                    if (((i>=xpos)&&(i<=xpos+raw))&&((j>=ypos)&&(j<=ypos+cols))){
-                       // if (image[i-xpos][j-ypos]!="0xff"){
-                        glcd_PlotPixel(i, j, image[i-xpos][j-ypos]) ; 
-                        //}
-                    }
-=======
-	for(i = 0; i < 8; ++i)
-	{
-		
-							// Envoi de donnée
-			
-			// Boucle sur les octets horizontaux
-			for(j = 0; j < 64; ++j)
-			{
-                if (image[i][j]==0xFF){
-                  glcd_PlotPixel(xpos, ypos,color); 
->>>>>>> 4f5eca8b77da9f4a30fc9d0258b1cda891928482
-                }
-        }
-    
+  }
+ * 
  }
-    
+   */
+
+
 
 
