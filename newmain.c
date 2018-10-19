@@ -22,10 +22,13 @@ void main (void)
     glcd_Init(GLCD_ON);
     unsigned char Victoire[9] = { 'V', 'I', 'C', 'T', 'O', 'I', 'R', 'E', '\0' };
     ///glcd_Image();
+    
     //glcd_PlotPixel( 2, 2, 0xFF);
     //glcd_WriteChar8X8('c','c');
     //glcd_WriteChar3x6('a','c');
-    glcd_WriteString(Victoire,f8X8,1);	//ecrit 
+    //glcd_WriteString(Victoire,f8X8,1);	//ecrit 
+    char carre[10][10]= { {0xFF, 0xFF,0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}, {0xFF, 0xFF,0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}};     
+        glcd_PlotImg(carre, 10, 10 );
     while(1)
     {
         
