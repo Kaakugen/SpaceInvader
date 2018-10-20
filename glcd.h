@@ -52,11 +52,13 @@ extern void glcd_FillScreen(unsigned char color);
 extern void glcd_WriteChar8X8( unsigned char ch, unsigned char color);
 extern void glcd_WriteChar3x6( unsigned char ch, unsigned char color);
 extern void glcd_WriteString(unsigned char str[],unsigned char font,unsigned char color);
-<<<<<<< HEAD
+
 extern void glcd_PlotImg(unsigned char** image, int xpos, int ypos);
-=======
-extern void glcd_PlotImg(unsigned char image[8][64], unsigned char xpos, unsigned char ypos, unsigned char color);
->>>>>>> 4f5eca8b77da9f4a30fc9d0258b1cda891928482
+
+void glcd_square(const unsigned char xpos, const  unsigned char ypos, const  unsigned char width,const  unsigned char height);
+
+
+
 
 #endif	/* GLCD_H */
 

@@ -739,7 +739,15 @@ void glcd_WriteString(unsigned char str[],unsigned char font,unsigned char color
     
   
 }
-
+void glcd_square(const unsigned char xpos, const  unsigned char ypos, const  unsigned char width,const  unsigned char height){
+    
+     unsigned char i,j;
+    for (j=xpos ; j<=xpos+height ; j++){
+      for (i=ypos ; i<=ypos+width ; i++){
+          glcd_PlotPixel(i, j , 0xFF);
+    }   
+    }
+}
 /*
 void glcd_PlotImg(){
   for(i = 0; i < 1024; i ++)		{
