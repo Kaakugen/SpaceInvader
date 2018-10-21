@@ -55,9 +55,12 @@ extern void glcd_WriteString(unsigned char str[],unsigned char font,unsigned cha
 extern void glcd_Image();
 //fonction ajoutés
 
-extern void plot_monstre(unsigned char xpos,  unsigned char ypos, unsigned char xmax,  unsigned char ymax,unsigned char nbMonstre);
-
+extern void plot_monstre(unsigned char xpos,  unsigned char ypos, unsigned char xmax,  unsigned char ymax,unsigned char nbMonstre2);
 extern void plot_vie( unsigned char xpos,  unsigned char ypos, char xmax, unsigned char ymax,unsigned char nbVie);
+extern void plot_joueur( unsigned char xpos,  unsigned char ypos, char xmax, unsigned char ymax);
+extern void remove_joueur(unsigned char posPersoX, unsigned char posPersoY,unsigned char xmax,unsigned char ymax);
+extern void bouger_joueurD();
+extern void bouger_joueurG();
 
 
 #endif	/* GLCD_H */

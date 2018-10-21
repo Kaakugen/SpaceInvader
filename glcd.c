@@ -1,5 +1,8 @@
 // INCLUDES
 #include "glcd.h"
+unsigned char posPersoX =0;
+unsigned char posPersoY =0;
+
 
 const unsigned char menu[1024] = {
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x80, 0x80, 0x80, 0x00,
@@ -68,6 +71,31 @@ const unsigned char menu[1024] = {
 0x0F, 0x0F, 0x0F, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
+const unsigned char joueur[121]={
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 
+0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 
+0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 
+0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 
+0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 
+0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 
+0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+};
+const unsigned char monstre3[100]={
+0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 
+0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 
+0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 
+0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 
+1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 
+0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 
+0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+};
 const unsigned char monstre2[100]={
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
@@ -789,15 +817,16 @@ unsigned char taille = (xmax*ymax);
             if((i%xmax)==0){
                 y++;
             }
-          
             
-            
-             if(monstre2[i]==1 ){
+             if(monstre2[i]==1 && j%2 ==0){
              
              glcd_PlotPixel( (xpos+(i%xmax)+10*l), (ypos+y+k),0xFF);
                                 
              }
-             
+            if(j%2!=0 && monstre3[i]==1)
+            {
+             glcd_PlotPixel( (xpos+(i%xmax)+10*l), (ypos+y+k),0xFF);
+            }
           
         }
     }
@@ -830,3 +859,82 @@ void plot_vie( unsigned char xpos,  unsigned char ypos, char xmax, unsigned char
     }
  }
 }
+
+
+//fonction d'affichage pour le joueur
+void plot_joueur( unsigned char xpos,  unsigned char ypos, char xmax, unsigned char ymax)
+{
+    posPersoX = xpos;
+    posPersoY = ypos;
+     
+    unsigned char y = 0 ;
+    
+    unsigned char i;
+    unsigned char taille;
+   
+    taille = xmax*ymax;
+    
+
+           
+ for (i=0; i < taille;i++)
+        { 
+            if((i%xmax)==0){
+                y++;
+            }
+          
+            
+             if(joueur[i]==1 ){
+             
+             glcd_PlotPixel( (xpos+(i%xmax)), (ypos+y),0xFF);
+                                
+             }
+    }
+    
+    
+ }
+
+void remove_joueur(unsigned char posPersoX, unsigned char posPersoY,unsigned char xmax,unsigned char ymax)
+{
+    unsigned char i;
+    unsigned char taille;
+    
+    unsigned char y = 0 ;
+   
+    taille = xmax*ymax;
+               
+ for (i=0; i < taille;i++)
+        { 
+            if((i%xmax)==0){
+                y++;
+            }
+            
+            if(joueur[i]==1 ){
+             glcd_PlotPixel( (posPersoX+(i%xmax)), (posPersoY+y),0);
+            }              
+             
+    }
+ }
+void bouger_joueurD()
+{
+    if((posPersoX+11) < 120)
+    {
+    remove_joueur(posPersoX,posPersoY,11,11);
+    posPersoX +=15;
+    
+         plot_joueur(posPersoX,posPersoY,11,11);
+    }
+    
+}
+
+void bouger_joueurG()
+{
+    if((posPersoX-11) >0)
+    {
+    remove_joueur(posPersoX,posPersoY,11,11);
+    posPersoX -=15;
+    
+         plot_joueur(posPersoX,posPersoY,11,11);
+    }
+    
+}
+

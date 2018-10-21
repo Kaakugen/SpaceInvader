@@ -27,11 +27,21 @@ void main (void)
    glcd_FillScreen(0); 
     
    plot_vie(-8,0,8,8,3);
-   plot_monstre(28,3,10,10,24);
-  
+   plot_monstre(24,3,10,10,24);
+   plot_joueur(56,46,11,11);
+   unsigned char i;
     while(1)
     {
-            ;
+        for(i=0;i <5;i++)
+        {
+         bouger_joueurD();
+         __delay_ms(100);
+        }
+          for(i=0;i <10;i++)
+        {
+         bouger_joueurG();
+         __delay_ms(100);
+        }
     }
 
        
