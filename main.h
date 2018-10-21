@@ -11,8 +11,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "glcd.h"
+#include "glcd.h"   
 #include "init.h"
+#include <xc.h> 
+
 
 #endif	/* MAIN_H */
 

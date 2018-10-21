@@ -52,12 +52,12 @@ extern void glcd_FillScreen(unsigned char color);
 extern void glcd_WriteChar8X8( unsigned char ch, unsigned char color);
 extern void glcd_WriteChar3x6( unsigned char ch, unsigned char color);
 extern void glcd_WriteString(unsigned char str[],unsigned char font,unsigned char color);
-
+extern void glcd_Image();
 //fonction ajoutés
 
 extern void plot_monstre(unsigned char xpos,  unsigned char ypos, unsigned char xmax,  unsigned char ymax,unsigned char nbMonstre);
 
-
+extern void plot_vie( unsigned char xpos,  unsigned char ypos, char xmax, unsigned char ymax,unsigned char nbVie);
 
 
 #endif	/* GLCD_H */

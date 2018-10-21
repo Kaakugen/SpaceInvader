@@ -7,6 +7,7 @@
 
 #include "main.h"
 
+
 #pragma config FOSC = HS 		//oscillator HS
 #pragma config PWRT = OFF
 #pragma config BOR = OFF
@@ -21,9 +22,13 @@ void main (void)
     initMyPIC18F();
     glcd_Init(GLCD_ON);
 
-
-   plot_monstre(28,3,10,10,32);
-
+   glcd_Image();
+   __delay_ms(1000);
+   glcd_FillScreen(0); 
+    
+   plot_vie(-8,0,8,8,3);
+   plot_monstre(28,3,10,10,24);
+  
     while(1)
     {
             ;
