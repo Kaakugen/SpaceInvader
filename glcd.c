@@ -838,7 +838,7 @@ void plot_vie( unsigned char xpos,  unsigned char ypos, char xmax, unsigned char
    
     unsigned char i,j;
     unsigned char taille;
-    unsigned char l;
+    unsigned char l=0;
     taille = xmax*ymax;
     
  for(j=0; j<nbVie; j++)
@@ -919,22 +919,25 @@ void bouger_joueurD()
     if((posPersoX+11) < 120)
     {
     remove_joueur(posPersoX,posPersoY,11,11);
-    posPersoX +=15;
+    posPersoX +=3;
     
          plot_joueur(posPersoX,posPersoY,11,11);
     }
     
 }
 
-void bouger_joueurG()
+void bouger_joueurG()   
 {
     if((posPersoX-11) >0)
     {
     remove_joueur(posPersoX,posPersoY,11,11);
-    posPersoX -=15;
+    posPersoX -=3;
     
          plot_joueur(posPersoX,posPersoY,11,11);
     }
     
 }
+
+
+
 

@@ -10,7 +10,7 @@
 
 // --- microchip define file for your PIC
 #include <htc.h>
-
+#include <xc.h> 
 // declare the function prototypes
 
 // inits the PIC18F device

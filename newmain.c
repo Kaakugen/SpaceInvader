@@ -16,8 +16,10 @@
 #pragma config DEBUG = ON		//Debug ON
 
 
+ 
+
 void main (void)
-{
+{ 
     // call the function that will init the PIC
     initMyPIC18F();
     glcd_Init(GLCD_ON);
@@ -28,24 +30,54 @@ void main (void)
     
    plot_vie(-8,0,8,8,3);
    plot_monstre(24,3,10,10,24);
-   plot_joueur(56,46,11,11);
+   plot_joueur(56,53,11,11);
+   
+   
    unsigned char i;
     while(1)
     {
-        for(i=0;i <5;i++)
+        
+        
+/*        for(i=0;i <10;i++)
         {
          bouger_joueurD();
-         __delay_ms(100);
+         
         }
           for(i=0;i <10;i++)
         {
          bouger_joueurG();
-         __delay_ms(100);
-        }
-    }
+          }
+        */
+        
+        ;
+    } 
 
+}
+
+
+   
+   
+void __interrupt() irqB()        // interrupt function 
+{
+         if (INTCONbits.RBIF == 1 ) // PORTB flag 
+    { 
+        INTCONbits.RBIF=0; // reset flag
        
+        if (PORTBbits.RB7==1) // si RB7 == 1 alors on va à gauche
+        {
+            bouger_joueurG();
+        }
+    
+        else if (PORTBbits.RB6==1) // si RB6 == 1 alors on va à droite
+        {
+            bouger_joueurD();
+        }
+        
+    }
+ 
+}
 
-}// end of the main function
+
+// end of the main function
 
 // make sure to have an empty LAST line in any *.c file (just hit an Enter)!
