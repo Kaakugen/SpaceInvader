@@ -4,7 +4,7 @@
 void initMyPIC18F(void)
 {
     
-       TRISB = 0xC0;           // Port B bits 7 and 6 are output
+        TRISB = 0xC0;           // Port B bits 7 and 6 are output
         INTCONbits.GIE = 1;                // Global interrupt enable
         INTCONbits.RBIE=1;
               

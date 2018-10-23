@@ -30,13 +30,15 @@ void main (void)
     
    plot_vie(-8,0,8,8,3);
    plot_monstre(24,3,10,10,24);
-   plot_joueur(56,53,11,11);
    
+   plot_joueur(56,53,11,11);
+   plot_tir(3,6);
+  
    
    unsigned char i;
     while(1)
     {
-        
+         bouger_tir();
         
 /*        for(i=0;i <10;i++)
         {

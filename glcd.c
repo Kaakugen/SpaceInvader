@@ -3,7 +3,10 @@
 unsigned char posPersoX =0;
 unsigned char posPersoY =0;
 
+unsigned char posTirX =0;
+unsigned char posTirY =0;
 
+const unsigned char TabMonstre[24][24] 
 const unsigned char menu[1024] = {
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x80, 0x80, 0x80, 0x00,
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -70,7 +73,16 @@ const unsigned char menu[1024] = {
 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F,
 0x0F, 0x0F, 0x0F, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
-
+const unsigned char tir[35]={
+0, 0, 0, 
+0, 1, 0,
+0, 1, 0,
+0, 1, 0,
+0, 1, 0,
+0, 1, 0,
+0, 1, 0,
+0, 0, 0 
+};
 const unsigned char joueur[121]={
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 
@@ -935,9 +947,85 @@ void bouger_joueurG()
     
          plot_joueur(posPersoX,posPersoY,11,11);
     }
-    
 }
+            
+void plot_tir(unsigned char xmax, unsigned char ymax)
+{
+    if( posTirY == 0)
+    {
+    posTirX = posPersoX+4;
+    posTirY = posPersoY-6;
+    }
+    unsigned char y = 0;
+    
+    unsigned char i;
+    unsigned char taille;
+   
+    taille = xmax*ymax;
+           
+ for (i=0; i < taille;i++)
+        { 
+            if((i%xmax)==0){
+                y++;
+            }
+          
+            
+             if(tir[i]==1 ){
+                 
+                 
+             glcd_PlotPixel( (posTirX+(i%xmax)), (posTirY+y),0xFF);
+             
+                                
+             }
+    }
+    
+    
+ }
 
+void remove_tir(unsigned char xmax, unsigned char ymax)
+{
+    
+     
+    unsigned char y = 0;
+    
+    unsigned char i;
+    unsigned char taille;
+   
+    taille = xmax*ymax;
+           
+ for (i=0; i < taille;i++)
+        { 
+            if((i%xmax)==0){
+                y++;
+            }
+          
+            
+             if(tir[i]==1 ){
+                 
+                 
+             glcd_PlotPixel( (posTirX+(i%xmax)), (posTirY+y),0x0);
+             
+                                
+             }
+    }
+    
+    
+ }
 
+void bouger_tir()
+{   
+    __delay_ms(30);
+    if((posTirY-6) > 0)        
+    {
+    remove_tir(3,6);
+    posTirY -=3;
+    plot_tir(3,6);
+    }
+    else
+    {   remove_tir(3,6);
+        posTirY=0;
+        plot_tir(3,6);
+    }
+}
 
 
