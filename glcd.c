@@ -6,7 +6,15 @@ unsigned char posPersoY =0;
 unsigned char posTirX =0;
 unsigned char posTirY =0;
 
-const unsigned char TabMonstre[24][24] 
+unsigned char posMonstreX =0;
+unsigned char posMonstreY =0;
+/*
+unsigned char tabMonstreX[1];
+unsigned char tabMonstreY[1];
+unsigned char tabMonstreFlag[1];
+
+*/
+
 const unsigned char menu[1024] = {
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x80, 0x80, 0x80, 0x00,
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -806,9 +814,13 @@ void glcd_WriteChar3x6(unsigned char ch, unsigned char color)
 
 void plot_monstre( unsigned char xpos,  unsigned char ypos, unsigned char xmax, unsigned char ymax,unsigned char nbMonstre)
 {
+    
+    posMonstreX = xpos;
+    posMonstreY = ypos;
 unsigned char i,j,k,l;
  
 unsigned char y = 0 ;
+l=0;
 k=0;
 
 unsigned char taille = (xmax*ymax);  
@@ -820,19 +832,20 @@ unsigned char taille = (xmax*ymax);
         if ((j%8)==0)
              {  
                 k = k+10;
-                l=0;
-                
+                l=0;    
              }
-        
+        /* tabMonstreX[j]  = xpos+l;
+         tabMonstreY[j] = ypos+k;
+         tabMonstreFlag[j] = 1;*/
         for (i=0; i < taille;i++)
-        { 
-            if((i%xmax)==0){
+        {            if((i%xmax)==0){
                 y++;
             }
             
              if(monstre2[i]==1 && j%2 ==0){
              
              glcd_PlotPixel( (xpos+(i%xmax)+10*l), (ypos+y+k),0xFF);
+             
                                 
              }
             if(j%2!=0 && monstre3[i]==1)
@@ -843,6 +856,33 @@ unsigned char taille = (xmax*ymax);
         }
     }
 }
+
+void remove_monstre(unsigned char posMonstreX, unsigned char posMonstreY,unsigned char xmax,unsigned char ymax)
+{  
+    unsigned char y = 0;
+    
+    unsigned char i;
+    unsigned char taille;
+   
+    taille = xmax*ymax;
+           
+ for (i=0; i < taille;i++)
+        { 
+            if((i%xmax)==0){
+                y++;
+            }
+          
+            
+             if(monstre2[i]==1 ||monstre3[i]==1){
+                 
+                 
+             glcd_PlotPixel( (posMonstreX+(i%xmax)), (posMonstreY+y),0);
+             
+                                
+             }
+    }
+    
+ }
 
 
 void plot_vie( unsigned char xpos,  unsigned char ypos, char xmax, unsigned char ymax,unsigned char nbVie)
@@ -1020,7 +1060,14 @@ void bouger_tir()
     remove_tir(3,6);
     posTirY -=3;
     plot_tir(3,6);
-    }
+    /*if(posTirX < (tabMonstreX[1]+10) && posTirX > (tabMonstreX[1])
+    && posTirY == tabMonstreY[1]+10 && tabMonstreFlag[1]==1)
+    {   
+        tabMonstreFlag[1] = 0;
+        remove_monstre(tabMonstreX[1],tabMonstreY[1],10,10);
+    }*/
+  }
+    
     else
     {   remove_tir(3,6);
         posTirY=0;

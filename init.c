@@ -13,7 +13,7 @@ void initMyPIC18F(void)
 	TRISA = 0x00;
    // TRISB = 0x00;
 	TRISC = 0x00;
-	TRISD = 0x00;
+	TRISD = 0xFF;
 	TRISE = 0x00;
 	// PORTA digital
     // set port by port on "all zeros"

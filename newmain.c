@@ -23,22 +23,30 @@ void main (void)
     // call the function that will init the PIC
     initMyPIC18F();
     glcd_Init(GLCD_ON);
-
-   glcd_Image();
+ 
+    glcd_Image();
    __delay_ms(1000);
    glcd_FillScreen(0); 
     
    plot_vie(-8,0,8,8,3);
-   plot_monstre(24,3,10,10,24);
+  plot_monstre(24,3,10,10,24);
+    plot_joueur(56,53,11,11);
    
-   plot_joueur(56,53,11,11);
+   //plot_joueur(56,53,11,11);
    plot_tir(3,6);
   
-   
-   unsigned char i;
-    while(1)
-    {
-         bouger_tir();
+       while(1)
+    {   
+              if(PORTD == 0x80 || 0x40  )
+              {bouger_tir();  
+       } /*   
+           __delay_ms(250);
+           plot_monstre(24,3,10,10,1);
+           plot_joueur(56,53,11,11);
+           __delay_ms(250);
+           remove_monstre(24,3,10,10);
+           remove_joueur(56,53,11,11);*/
+         
         
 /*        for(i=0;i <10;i++)
         {
@@ -54,15 +62,14 @@ void main (void)
         ;
     } 
 
-}
+} 
 
-
-   
-   
+   /*
 void __interrupt() irqB()        // interrupt function 
 {
          if (INTCONbits.RBIF == 1 ) // PORTB flag 
     { 
+             //plot_vie(-8,0,20,8,3);
         INTCONbits.RBIF=0; // reset flag
        
         if (PORTBbits.RB7==1) // si RB7 == 1 alors on va à gauche
@@ -79,7 +86,7 @@ void __interrupt() irqB()        // interrupt function
  
 }
 
-
+*/
 // end of the main function
 
 // make sure to have an empty LAST line in any *.c file (just hit an Enter)!
