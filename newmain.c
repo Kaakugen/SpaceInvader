@@ -16,7 +16,7 @@
 #pragma config DEBUG = ON		//Debug ON
 
 
- 
+unsigned char flag = 0;
 
 void main (void)
 { 
@@ -28,42 +28,38 @@ void main (void)
    __delay_ms(1000);
    glcd_FillScreen(0); 
     
-   plot_vie(-8,0,8,8,3);
-  plot_monstre(24,3,10,10,24);
-    plot_joueur(56,53,11,11);
+  plot_vie(-8,0,8,8,3);
+  plot_monstre(24,1,10,10,24);
+  // remove_Allmonstre(24,1,10,10,24);
+   plot_joueur(56,53,11,11);
    
-   //plot_joueur(56,53,11,11);
-   plot_tir(3,6);
   
+  plot_tir(3,6);
+  
+    
        while(1)
-    {   
+    {
+            bouger_tir();
+       /*   
+    bouger_MonstreG();
+    bouger_tir();
+    bouger_MonstreG();
+    bouger_tir();
+    bouger_MonstreD();
+    bouger_tir();
+    bouger_MonstreD();
+    bouger_tir();
+     bouger_MonstreD();
+    
+    */
+          
+         
+               ;/*
               if(PORTD == 0x80 || 0x40  )
-              {bouger_tir();  
-       } /*   
-           __delay_ms(250);
-           plot_monstre(24,3,10,10,1);
-           plot_joueur(56,53,11,11);
-           __delay_ms(250);
-           remove_monstre(24,3,10,10);
-           remove_joueur(56,53,11,11);*/
-         
+              {  */
+       }   
         
-/*        for(i=0;i <10;i++)
-        {
-         bouger_joueurD();
-         
-        }
-          for(i=0;i <10;i++)
-        {
-         bouger_joueurG();
-          }
-        */
-        
-        ;
-    } 
-
-} 
-
+}
    /*
 void __interrupt() irqB()        // interrupt function 
 {
@@ -84,9 +80,28 @@ void __interrupt() irqB()        // interrupt function
         
     }
  
-}
+}*/
 
-*/
+void __interrupt() Tim()        // interrupt function 
+{
+         if (INTCONbits.TMR0IF == 1 ) // PORTB flag 
+    { 
+             //plot_vie(-8,0,20,8,3);
+        INTCONbits.TMR0IF=0; // reset flag
+        
+        if(flag ==0)
+        {
+         bouger_MonstreG();
+         flag = 1;
+        }
+        if(flag == 1)
+        {
+         bouger_MonstreD();
+         flag = 0;
+        }
+    }
+}
 // end of the main function
 
 // make sure to have an empty LAST line in any *.c file (just hit an Enter)!
+

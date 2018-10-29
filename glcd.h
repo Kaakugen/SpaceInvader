@@ -53,11 +53,16 @@ extern void glcd_WriteChar8X8( unsigned char ch, unsigned char color);
 extern void glcd_WriteChar3x6( unsigned char ch, unsigned char color);
 extern void glcd_WriteString(unsigned char str[],unsigned char font,unsigned char color);
 extern void glcd_Image();
+extern void glcd_Image2();
 //fonction ajoutés
 
 //fonction monstre
 extern void plot_monstre(unsigned char xpos,  unsigned char ypos, unsigned char xmax,  unsigned char ymax,unsigned char nbMonstre2);
-void remove_monstre(unsigned char posMonstreX, unsigned char posMonstreY,unsigned char xmax,unsigned char ymax);
+extern void remove_Allmonstre(unsigned char xmax, unsigned char ymax,unsigned char nbMonstre);
+extern void remove_monstre(unsigned char posx,unsigned char posy, unsigned char xmax,unsigned char ymax);
+extern void bouger_MonstreG();
+extern void bouger_MonstreD();
+
 
 extern void plot_vie( unsigned char xpos,  unsigned char ypos, char xmax, unsigned char ymax,unsigned char nbVie);
 
