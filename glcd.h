@@ -15,8 +15,8 @@
 #define 	GLCD_CS2			LATBbits.LATB1
 #define 	GLCD_RS				LATBbits.LATB2
 #define 	GLCD_RW				LATBbits.LATB3
-#define 	GLCD_E				LATBbits.LATB4
-#define 	GLCD_RST			LATBbits.LATB5
+#define 	GLCD_E				LATEbits.LATE0
+#define 	GLCD_RST			LATEbits.LATE2
 
 #define 	GLCD_DATA_TRIS		TRISD
 #define 	WR_DATA				LATD		

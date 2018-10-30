@@ -999,9 +999,7 @@ unsigned char taille = (xmax*ymax);
                 l=0;    
              }
         
-               // xpos = xpos-10*l ;
-                // ypos = ypos-k; 
-              
+               
         for (i=0; i < taille;i++)
         {            if((i%xmax)==0)
                     {
@@ -1234,7 +1232,7 @@ void remove_tir(unsigned char xmax, unsigned char ymax)
           
             
              if(tir[i]==1 ){
-                 
+                    
                  
              glcd_PlotPixel( (posTirX+(i%xmax)), (posTirY+y),0x0);
              
@@ -1264,7 +1262,7 @@ void bouger_tir()
                             posTirY =0;
                             
 
-                            if (compteurMonstre == 5)
+                            if (compteurMonstre == 24)
                             {   posTirY=200;
                                 glcd_FillScreen(0);
                                

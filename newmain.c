@@ -60,13 +60,12 @@ void main (void)
        }   
         
 }
-   /*
+   
 void __interrupt() irqB()        // interrupt function 
 {
          if (INTCONbits.RBIF == 1 ) // PORTB flag 
     { 
-             //plot_vie(-8,0,20,8,3);
-        INTCONbits.RBIF=0; // reset flag
+        
        
         if (PORTBbits.RB7==1) // si RB7 == 1 alors on va à gauche
         {
@@ -77,13 +76,10 @@ void __interrupt() irqB()        // interrupt function
         {
             bouger_joueurD();
         }
-        
-    }
- 
-}*/
-
-void __interrupt() Tim()        // interrupt function 
-{
+     }
+          INTCONbits.RBIF=0; // reset flag
+       
+/*
          if (INTCONbits.TMR0IF == 1 ) // PORTB flag 
     { 
              //plot_vie(-8,0,20,8,3);
@@ -91,16 +87,20 @@ void __interrupt() Tim()        // interrupt function
         
         if(flag ==0)
         {
-         bouger_MonstreG();
+         bouger_MonstreG(); 
+         
          flag = 1;
         }
         if(flag == 1)
         {
          bouger_MonstreD();
          flag = 0;
-        }
+        }   */
     }
-}
+
+
+
+         
 // end of the main function
 
 // make sure to have an empty LAST line in any *.c file (just hit an Enter)!
