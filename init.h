@@ -9,7 +9,7 @@
 #define	INIT_H
 
 // --- microchip define file for your PIC
-#include <htc.h>
+
 #include <xc.h> 
 // declare the function prototypes
 

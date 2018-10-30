@@ -18,6 +18,13 @@
 
 unsigned char flag = 0;
 
+
+   
+         
+// end of the main function
+
+// make sure to have an empty LAST line in any *.c file (just hit an Enter)!
+
 void main (void)
 { 
     // call the function that will init the PIC
@@ -35,73 +42,55 @@ void main (void)
    
   
   plot_tir(3,6);
-  
+  plot_tirMonstre(3,6);
+    INTCONbits.GIE = 1;  
+	INTCONbits.RBIE=1;
     
        while(1)
     {
             bouger_tir();
-       /*   
-    bouger_MonstreG();
-    bouger_tir();
-    bouger_MonstreG();
-    bouger_tir();
-    bouger_MonstreD();
-    bouger_tir();
-    bouger_MonstreD();
-    bouger_tir();
-     bouger_MonstreD();
-    
-    */
+            bouger_tirMonstre();
           
-         
-               ;/*
+           ; /*
               if(PORTD == 0x80 || 0x40  )
               {  */
        }   
         
 }
-   
+
 void __interrupt() irqB()        // interrupt function 
 {
          if (INTCONbits.RBIF == 1 ) // PORTB flag 
     { 
-        
-       
-        if (PORTBbits.RB7==1) // si RB7 == 1 alors on va à gauche
+         
+         if (PORTBbits.RB7==1) // si RB7 == 1 alors on va à gauche
         {
             bouger_joueurG();
         }
     
-        else if (PORTBbits.RB6==1) // si RB6 == 1 alors on va à droite
+         if (PORTBbits.RB6==1) // si RB6 == 1 alors on va à droite
         {
             bouger_joueurD();
         }
-     }
+     
           INTCONbits.RBIF=0; // reset flag
-       
-/*
+         } 
+
          if (INTCONbits.TMR0IF == 1 ) // PORTB flag 
     { 
-             //plot_vie(-8,0,20,8,3);
-        INTCONbits.TMR0IF=0; // reset flag
-        
-        if(flag ==0)
+                 
+            INTCONbits.TMR0IF=0; // reset flag
+            
+        if(flag == 0)
         {
          bouger_MonstreG(); 
          
          flag = 1;
         }
-        if(flag == 1)
-        {
+        else{
          bouger_MonstreD();
          flag = 0;
-        }   */
-    }
-
-
-
-         
-// end of the main function
-
-// make sure to have an empty LAST line in any *.c file (just hit an Enter)!
+         }   
+      
+         }}
 

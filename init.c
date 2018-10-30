@@ -4,25 +4,33 @@
 void initMyPIC18F(void)
 {
     
-        TRISB = 0xC0;           // Port B bits 7 and 6 are input
-        INTCONbits.GIE = 1;                // Global interrupt enable
-        INTCONbits.RBIE=1;
-              
-     T0CONbits.TMR0ON = 1;
-     T0CONbits.T08BIT = 0;
-     T0CONbits.T0PS0 =  0;
-     T0CONbits.T0PS1 =  0;
-     T0CONbits.T0PS2 =  1;
+                  // Port B bits 7 and 6 are input
+                   // Global interrupt enable
+        
+    
+     T0CONbits.TMR0ON = 1; //timer0 est ON
+     T0CONbits.T08BIT = 0; //timer0 sur 16bits
+     T0CONbits.T0CS=0 ; //internal clock source
+     T0CONbits.PSA=0 ; //give the prescaler to TMR0
+     T0CONbits.T0PS0 =  1;// prescalaire à 256
+     T0CONbits.T0PS1 =  1; //prescalaire à 256
+     T0CONbits.T0PS2 =  1; //prescalaire à 256
      INTCONbits.TMR0IE = 1;
-     TMR0H = 0xc3;
-     TMR0L = 0x50;
-
+     
+    ADCON1 = 0x00;
+	ADCON0 = 0x00;
+    ADCON2 = 0x00;
     // set all ports as OUTPUTS
-	TRISA = 0x00;
-   // TRISB = 0x00;
+	TRISA = 0x06;
+    LATA =0x00;    
+    TRISB = 0xF0; 
+    LATB =0x00;
 	TRISC = 0x00;
-	TRISD = 0xFF;
+    LATC =0x00;
+	TRISD = 0x00;
+      LATD =0x00;
 	TRISE = 0x00;
+    LATE =0x00;
 	// PORTA digital
     // set port by port on "all zeros"
     
@@ -32,17 +40,15 @@ void initMyPIC18F(void)
 	PORTD = 0x00;
     PORTE = 0x00;
     
-	ADCON1 = 0x0F ;
-	ADCON0 = 0;
+        INTCONbits.GIE = 1;  
+	INTCONbits.RBIE=1;
+   
+            
 	
 	
 
 	
 // make sure to have an empty LAST line in any *.c file (just hit an Enter)!
-    
-
 }
 
-// make sure to have an empty LAST line in any *.c file (just hit an Enter)!
 
-    
